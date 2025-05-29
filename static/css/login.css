@@ -1,0 +1,124 @@
+/* static/css/styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 使用视口高度，确保垂直居中 */
+    background: linear-gradient(to right, #f0faff, #d9eaff); /* 更浅的冷色调 */
+}
+
+
+.login-container {
+    max-width: 80vw; /* 使用视口宽度 */
+    width: 94vw; /* 确保在小屏幕上也能自适应 */
+    margin: auto;
+    padding: 2vw; /* 使用视口宽度 */
+    background: #fff;
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.1); /* 使用视口宽度 */
+    border-radius: 0.8vw; /* 使用视口宽度 */
+    transition: all 0.3s ease; /* 添加过渡效果 */
+    font-size: 3.0vh;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2vw; /* 使用视口宽度 */
+    color: #333; /* 使用深色文字，与背景对比 */
+}
+
+.form-group {
+    margin-bottom: 1.5vw; /* 使用视口宽度 */
+    font-size: 3.0vh;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5vw; /* 使用视口宽度 */
+    color: #555; /* 使用灰色文字，与背景对比 */
+    font-size: 3.0vh;
+}
+
+.form-group input {
+    width: 95%; /* 使用百分比宽度，确保自适应 */
+    padding: 1vw; /* 使用视口宽度 */
+    border: 0.1vw solid #ddd; /* 使用视口宽度 */
+    border-radius: 0.4vw; /* 使用视口宽度 */
+    background-color: #f9f9f9; /* 浅灰色背景，与白色容器对比 */
+    transition: border-color 0.3s ease; /* 添加过渡效果 */
+    font-size: 3.0vh;
+}
+
+.form-group input:focus {
+    border-color: #667eea; /* 聚焦时的边框颜色与背景渐变一致 */
+    outline: none; /* 移除默认的聚焦轮廓 */
+    font-size: 3.0vh;
+}
+
+.form-group button {
+    width: 100%; /* 使用百分比宽度，确保自适应 */
+    padding: 1vw; /* 使用视口宽度 */
+    background-color: #333; /* 按钮颜色与文字颜色一致 */
+    color: #fff;
+    border: none;
+    border-radius: 0.4vw; /* 使用视口宽度 */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+    background: linear-gradient(to right, #66aaff, #3377cc); /* 按钮渐变颜色 */
+    font-size: 3.0vh;
+}
+
+.form-group button:hover {
+    background-color: #555; /* 按钮悬停时的颜色 */
+    background: linear-gradient(to right, #5599dd, #2266aa); /* 悬停时更深的渐变色 */
+}
+
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5vw 0; /* 使用视口宽度 */
+}
+
+.flashes li {
+    padding: 1vw; /* 使用视口宽度 */
+    background-color: #ffcccc;
+    border: 0.1vw solid #ff0000; /* 使用视口宽度 */
+    border-radius: 0.4vw; /* 使用视口宽度 */
+    margin-bottom: 1vw; /* 使用视口宽度 */
+    color: #764ba2; /* 使用与背景渐变一致的颜色 */
+}
+
+
+
+/* 响应式设计 - 移动端优化 */
+@media (max-width: 600px) {
+    .login-container {
+        max-width: 95vw;  /* 接近满屏宽度 */
+        width: 95vw;      /* 强制宽度占满 */
+        min-height: 95vh; /* 纵向按比例自适应（可调整数值） */
+        padding: 4vw;     /* 增加内边距提升呼吸感 */
+        margin: 0 auto;   /* 保持水平居中 */
+        box-sizing: border-box; /* 确保padding不增加总宽度 */
+        font-size: 1.5vw;
+    }
+
+    /* 表单元素优化 */
+    .form-group input {
+        width: 100%;      /* 输入框真正占满容器 */
+        padding: 3vw;     /* 增大触摸区域 */
+    }
+
+    /* 按钮优化 */
+    .form-group button {
+        padding: 3vw;
+        font-size: 1.1em; /* 增大文字提高可读性 */
+    }
+
+    /* 标题调整 */
+    h1 {
+        font-size: 6vw;   /* 动态字体大小 */
+        margin-bottom: 4vw;
+    }
+}

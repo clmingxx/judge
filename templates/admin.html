@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icons/111.png') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+        <h1>管理面板</h1>
+        <h2>项目分数</h2>
+        <div style="overflow: auto; max-height: 70vh; max-width: 80vw;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        {% for user in users %}
+                            <th>{{ user }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ item }}</td>
+                            {% for user in users %}
+                                <td>
+                                    {% if scores[user][item] is none %}
+                                        <span class="unscored">未打分</span>
+                                    {% else %}
+                                        {{ scores[user][item] }}
+                                    {% endif %}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="action-buttons">
+        <a href="{{ url_for('display') }}" class="display-button">
+            <span class="tooltip">实时排名展示</span>
+        </a>
+        <a href="{{ url_for('admin_panel') }}" class="display-button">
+            <span class="tooltip">用户及项目配置</span>
+        </a>
+    </div>
+</body>
+</html>

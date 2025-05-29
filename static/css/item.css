@@ -1,0 +1,173 @@
+/* ==================== MODAL STYLES ==================== */
+
+/* Modal Animation Keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+/* Modal Container */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    padding-top: 0;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    backdrop-filter: blur(15px);
+}
+
+.modal.show  {
+    display: block;
+    animation: fadeIn 0.3s forwards;
+}
+
+.modal.hide  {
+    animation: fadeOut 0.3s forwards;
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: rgba(0, 32, 74, 0.75);
+    color: #FFFFFF;
+    margin: 54px auto;
+    padding: 58px;
+    border-radius: 19px;
+    border: 4px solid #001533;
+    width: 90%;
+    max-width: 95vw;
+    position: relative;
+    z-index: 50;
+    box-shadow: 0 10px 19px rgba(0, 0, 0, 0.5);
+    transform: scale(1);
+    backdrop-filter: none;
+}
+
+/* Close Button */
+.close {
+    color: #FFFFFF;
+    font-size: 29px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 4px;
+    margin: 0;
+    line-height: 29px;
+    display: block;
+    text-align: center;
+    width: 29px;
+    height: 29px;
+    background-color: #001533;
+    border-radius: 50%;
+    position: absolute;
+    top: 19px;
+    right: 19px;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    background-color: #000000;
+}
+
+/* Modal Text Elements */
+.modal-content h1 {
+    font-size: 50px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.modal-content p,
+.modal-content h2,
+.modal-content ul {
+    font-size:30px;
+    margin: 23px 0;
+    color: #FFFFFF;
+}
+
+.modal-content ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.modal-content li {
+    margin: 15px 0;
+}
+
+/* Score Container in Modal */
+.score-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 19px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 11px;
+    margin-top: 22px;
+}
+
+.score-item {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+    width: calc(15%);
+    text-align: center;
+    font-size: 40px;
+    color: #ffffff;
+    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.score-item.highest  {
+    background-color: rgba(0, 255, 0, 0.3);
+    text-decoration: line-through;
+}
+
+.score-item.lowest  {
+    background-color: rgba(255, 0, 0, 0.3);
+    text-decoration: line-through;
+}
+
+/* Scrollbar for Score Container */
+.score-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.score-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.score-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.score-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
+}

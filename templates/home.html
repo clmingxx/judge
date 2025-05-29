@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icons/111.png') }}" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>云啸比赛打分系统</h1>
+            <p>连接局域网后扫码进入登录界面。</p>
+        </header>
+        <section class="qrcode-section">
+            <img src="{{ url_for('static', filename='images/qrcode.png') }}" alt="QR Code" class="qrcode">
+            <p>或 <a href="{{ url_for('login') }}">点击此处</a> 进入登录界面。</p>
+        </section>
+        <footer>
+            <p>&copy; <span id="current-year"></span> 溟同学. All rights reserved.</p>
+<script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
+        </footer>
+    </div>
+</body>
+</html>

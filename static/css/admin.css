@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 5vh 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    max-width: 80vw;
+    margin: 5vh auto;
+    padding: 2vw;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; /* 隐藏容器的滚动条 */
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2vh;
+    border: 2px solid #ccc; /* 添加外边框 */
+}
+
+thead th {
+    position: sticky;
+    top: 0; /* 固定表头 */
+    z-index: 2; /* 确保表头在滚动时覆盖其他内容 */
+    background-color: #e0e0e0; /* 稍微深一点的背景色 */
+    border: 1px solid #ccc; /* 增强单元格边框 */
+}
+
+thead th:first-child {
+    position: sticky;
+    left: 0; /* 固定第一列 */
+    z-index: 4; /* 确保第一列在滚动时覆盖其他内容 */
+    background-color: #d0d0d0; /* 比表头更深的背景色 */
+    width: 15vw; /* 将第一列宽度调整为25vw */
+    min-width: 15vw; /* 确保最小宽度 */
+    max-width: 15vw; /* 确保最大宽度 */
+    border-right: 2px solid #ccc; /* 增加右侧边框 */
+    border-bottom: 2px solid #ccc; /* 增加底部边框 */
+}
+
+tbody td:first-child {
+    position: sticky;
+    left: 0; /* 固定第一列 */
+    z-index: 3; /* 确保第一列在滚动时覆盖其他内容 */
+    width: 10vw; /* 将第一列宽度调整为25vw */
+    min-width: 10vw; /* 确保最小宽度 */
+    max-width: 10vw; /* 确保最大宽度 */
+    border-right: 2px solid #ccc; /* 增加右侧边框 */
+}
+
+/* 为第一列的单元格应用奇偶行背景颜色 */
+tbody tr:nth-child(even) td:first-child {
+    background-color: #d8d8d8; /* 深色背景，与偶数行一致 */
+}
+
+tbody tr:nth-child(odd) td:first-child {
+    background-color: #c8c8c8; /* 深色背景，与奇数行一致 */
+}
+
+th, td {
+    padding: 0.5vh 1.5vw;
+    text-align: left;
+    border: 1px solid #ccc; /* 增强单元格边框 */
+}
+
+th {
+    background-color: #e0e0e0; /* 稍微深一点的背景色 */
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.unscored {
+    color: red;
+    font-weight: bold;
+}
+
+.logout-button {
+    position: absolute;
+    width: 10vw;
+    top: 2vh;
+    right: 2vw;
+    background-color: #007bff;
+    color: #fff;
+    padding: 1vh 2vw;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-button:hover {
+    background-color: #0056b3;
+}
+
+.display-button {
+    display: block;
+    margin: 2vh auto;
+    padding: 1vh 2vw;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.display-button:hover {
+    background-color: #218838;
+}

@@ -1,0 +1,310 @@
+/* 基础样式 */
+body {
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+}
+.logout-button {
+    position: absolute;
+    width: 10vw;
+    top: 2vh;
+    right: 2vw;
+    background-color: #007bff;
+    color: #fff;
+    padding: 1vh 2vw;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-button:hover {
+    background-color: #0056b3;
+}
+h2, h3 {
+    color: #1a73e8;
+    margin-top: 0;
+}
+
+h2 {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.warning {
+    color: #d32f2f;
+    background: #fce4ec;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+/* 选项卡样式 */
+.section-nav {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+
+.tab-btn {
+    padding: 10px 20px;
+    background: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 5px 5px 0 0;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.tab-btn:hover {
+    background: #e0e0e0;
+}
+
+.tab-btn.active  {
+    background: #1a73e8;
+    color: white;
+}
+
+/* 内容区域 */
+.content-section {
+    display: none;
+    padding: 20px 0;
+    animation: fadeIn 0.3s;
+}
+
+.content-section.active  {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 表格样式 */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.data-table th, .data-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table th {
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.data-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* 表单元素 */
+.add-form, .speaker-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.inline-form {
+    display: inline-flex;
+    gap: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 200px;
+}
+
+/* 按钮样式 */
+button, .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: #1a73e8;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0d5bba;
+}
+
+.btn-success {
+    background: #388e3c;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #2e7d32;
+}
+
+.btn-warning {
+    background: #ffa000;
+    color: white;
+}
+
+.btn-warning:hover {
+    background: #e68a00;
+}
+
+.btn-danger {
+    background: #d32f2f;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #b71c1c;
+}
+
+/* 状态标记 */
+.badge-admin {
+    background: #388e3c;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.8em;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .section-nav {
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        margin-bottom: 5px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .add-form, .speaker-form {
+        flex-direction: column;
+    }
+
+    input, select {
+        width: 100%;
+    }
+}
+.display-button {
+    width: 10vw;
+    display: block;
+    margin: 2vh auto;
+    padding: 1vh 2vw;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+}
+.display-button:hover {
+    background-color: #218838;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2vh;
+    border: 2px solid #ccc; /* 添加外边框 */
+}
+
+thead th {
+    position: sticky;
+    top: 0; /* 固定表头 */
+    z-index: 2; /* 确保表头在滚动时覆盖其他内容 */
+    background-color: #e0e0e0; /* 稍微深一点的背景色 */
+    border: 1px solid #ccc; /* 增强单元格边框 */
+}
+
+thead th:first-child {
+    position: sticky;
+    left: 0; /* 固定第一列 */
+    z-index: 4; /* 确保第一列在滚动时覆盖其他内容 */
+    background-color: #d0d0d0; /* 比表头更深的背景色 */
+    width: 15vw; /* 将第一列宽度调整为25vw */
+    min-width: 15vw; /* 确保最小宽度 */
+    max-width: 15vw; /* 确保最大宽度 */
+    border-right: 2px solid #ccc; /* 增加右侧边框 */
+    border-bottom: 2px solid #ccc; /* 增加底部边框 */
+}
+
+tbody td:first-child {
+    position: sticky;
+    left: 0; /* 固定第一列 */
+    z-index: 3; /* 确保第一列在滚动时覆盖其他内容 */
+    width: 10vw; /* 将第一列宽度调整为25vw */
+    min-width: 10vw; /* 确保最小宽度 */
+    max-width: 10vw; /* 确保最大宽度 */
+    border-right: 2px solid #ccc; /* 增加右侧边框 */
+}
+
+/* 为第一列的单元格应用奇偶行背景颜色 */
+tbody tr:nth-child(even) td:first-child {
+    background-color: #d8d8d8; /* 深色背景，与偶数行一致 */
+}
+
+tbody tr:nth-child(odd) td:first-child {
+    background-color: #c8c8c8; /* 深色背景，与奇数行一致 */
+}
+
+th, td {
+    padding: 0.5vh 1.5vw;
+    text-align: left;
+    border: 1px solid #ccc; /* 增强单元格边框 */
+}
+
+th {
+    background-color: #e0e0e0; /* 稍微深一点的背景色 */
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.unscored {
+    color: red;
+    font-weight: bold;
+}

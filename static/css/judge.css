@@ -1,0 +1,128 @@
+/* 基本样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    -webkit-overflow-scrolling: touch; /* 启用硬件加速 */
+    overflow-scrolling: touch;
+    background: linear-gradient(to right, #f0faff, #d9eaff); /* 更浅的冷色调 */
+}
+
+.container {
+    max-width: 100%; /* 项目展示区域宽度 */
+    margin: 10vw auto; /* 上下外边距 */
+    padding: 2vw; /* 内边距 */
+    background: linear-gradient(to bottom, #e6f7ff, #d9eaff); /* 容器渐变色 */
+    box-shadow: 0 0 1vw rgba(0, 0, 0, 0.1);
+    border-radius: 0.8vw;
+    position: relative; /* 用于定位右上角的按钮 */
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+label {
+    display: inline-block;
+    margin-top: 1vw;
+    font-weight: bold;
+    width: 95%; /* 调整标签宽度 */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    background-color: #f2ffff; /* 输入框背景色与容器渐变色一致 */
+    width: 5vw; /* 设置输入框宽度为两位数 */
+    padding: 1vw;
+    margin-top: 0.5vw;
+    border: 0.1vw solid #ddd;
+    border-radius: 0.4vw;
+}
+
+button[type="submit"] {
+    background: linear-gradient(to right, #66aaff, #3377cc) !important; /* 按钮渐变色 */
+    color: #fff !important;
+    padding: 0.5vw 1vw !important; /* 减小退出按钮的内边距 */
+    border: none !important;
+    border-radius: 0.4vw !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    font-size: 4vw !important; /* 减小退出按钮的字体大小 */
+    transition: background 0.3s; /* 平滑过渡效果 */
+}
+
+button[type="submit"]:hover {
+    background: linear-gradient(to right, #5599dd, #2266aa) !important; /* 悬停时更深的渐变色 */
+}
+
+.flash-messages {
+    margin-bottom: 2vw;
+}
+
+.flash-messages ul {
+    list-style: none;
+    padding: 0;
+}
+
+.flash-messages li {
+    padding: 1vw;
+    background-color: #dff0d8;
+    border: 0.1vw solid #d6e9c6;
+    border-radius: 0.4vw;
+    margin-bottom: 0.5vw;
+}
+
+.flash-messages li.error {
+    background-color: #f2dede;
+    border: 0.1vw solid #ebccd1;
+}
+
+.logout-button {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    background: linear-gradient(to right, #66aaff, #3377cc) !important; /* 退出按钮渐变色 */
+    color: #fff !important;
+    padding: 0.5vw 1vw !important; /* 减小退出按钮的内边距 */
+    border: none !important;
+    border-radius: 0.4vw !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    font-size: 4vw !important; /* 减小退出按钮的字体大小 */
+    transition: background 0.3s; /* 平滑过渡效果 */
+}
+
+.logout-button:hover {
+    background: linear-gradient(to right, #5599dd, #2266aa) !important; /* 悬停时更深的渐变色 */
+}
+.col-sm-10.d-flex.justify-content-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+@media (min-width: 768px) {
+    .container {
+        max-width: 80vw; /* 在大屏幕上限制容器宽度 */
+        padding: 3vw; /* 增加内边距 */
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"] {
+        width: 10vw; /* 在大屏幕上增加输入框宽度 */
+    }
+
+    button[type="submit"],
+    .logout-button {
+        width: 4vw;
+        font-size: 1vw !important; /* 减小退出按钮的字体大小 */
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 60vw; /* 在超大屏幕上进一步限制容器宽度 */
+    }
+}

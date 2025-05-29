@@ -1,0 +1,191 @@
+/* ==================== 基础样式 ==================== */
+
+/* 自定义字体定义 */
+@font-face {
+    font-family: 'fz';          /* 定义字体家族名称 */
+    src: url('/static/font/fz.ttf') format('truetype');  /* 字体文件路径及格式 */
+    font-weight: normal;        /* 常规字重 */
+    font-style: normal;         /* 常规样式（非斜体） */
+}
+
+/* 全局页面样式 */
+body {
+    margin: 0;                  /* 清除默认外边距 */
+    padding: 0;                 /* 清除默认内边距 */
+    display: flex;              /* 启用弹性布局 */
+    flex-direction: column;     /* 垂直排列子元素 */
+    font-family: 'fz', Arial, sans-serif;  /* 字体优先级：自定义字体 > Arial > 系统无衬线字体 */
+    color: #ffffff;             /* 白色文字 */
+    background-color: #f4f4f4;  /* 备用背景色（当图片加载失败时显示） */
+    background-image: url('/static/images/banner2.jpg');  /* 背景图片路径 */
+    background-size: cover;     /* 背景图完全覆盖容器 */
+    background-position: center;/* 背景图居中显示 */
+    background-repeat: no-repeat; /* 禁止背景图重复 */
+    background-attachment: fixed; /* 固定背景图（不随滚动条移动） */
+}
+
+/* 隐藏滚动条但保留滚动功能 */
+::-webkit-scrollbar {
+    width: 0 !important;        /* 隐藏垂直滚动条 */
+    height: 0 !important;       /* 隐藏水平滚动条 */
+    display: none;              /* 确保在某些浏览器中隐藏 */
+}
+
+/* ==================== 布局结构 ==================== */
+
+/* 主容器样式 */
+.container {
+    margin: auto auto;          /* 水平居中 */
+    padding: 0 96px;            /* 左右内边距96px */
+    display: flex;              /* 启用弹性布局 */
+    flex: 1;                    /* 填充剩余空间 */
+    flex-wrap: wrap;            /* 允许子元素换行 */
+    justify-content: space-between; /* 子元素两端对齐 */
+    gap: 10px;                  /* 子元素间距10px */
+    max-width: 2400px;          /* 最大宽度限制 */
+    min-height: 75vh;           /* 最小高度为视口的75% */
+    background-color: transparent; /* 完全透明背景 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
+}
+
+/* 头部区域样式 */
+header {
+    margin: 50px 0 0 0;         /* 上边距50px，其他方向为0 */
+    padding: 0;                 /* 清除内边距 */
+    height: 104px;              /* 固定高度 */
+    display: flex;              /* 启用弹性布局 */
+    justify-content: center;    /* 内容水平居中 */
+    position: relative;         /* 为子元素定位提供基准 */
+    z-index: 10;                /* 确保显示在顶层 */
+    background-color: rgba(255, 255, 255, 0); /* 完全透明背景 */
+    background-image: url('/static/images/title.png'); /* 标题背景图 */
+    background-size: 100% 100%; /* 背景图完全填充 */
+}
+
+/* 头部标题文字样式 */
+header h1 {
+    margin: 20px;               /* 四周20px外边距 */
+    padding: 0;                 /* 清除内边距 */
+    line-height: 0;             /* 行高为0（特殊调整） */
+    font-size: 50px;            /* 大号字体 */
+    color: #ffffff;             /* 白色文字 */
+}
+
+/* 列布局样式（左右两列通用） */
+.column {
+    display: flex;              /* 启用弹性布局 */
+    flex: 1;                    /* 平均分配剩余空间 */
+    flex-direction: column;     /* 垂直排列子元素 */
+    justify-content: space-between; /* 首尾贴边，中间均匀分布 */
+    gap: 2px;                   /* 子元素间距2px */
+    width: 48%;                 /* 基础宽度占比 */
+    min-width: 48%;             /* 最小宽度限制 */
+    max-width: 48%;             /* 最大宽度限制 */
+}
+
+/* ==================== 项目组样式 ==================== */
+
+/* 项目组基础样式 */
+.item-group {
+    display: flex;              /* 启用弹性布局 */
+    flex: 1;                    /* 填充剩余空间 */
+    flex-grow: 1;               /* 允许增长填满空间 */
+    align-items: center;        /* 垂直居中 */
+    justify-content: flex-start; /* 内容左对齐 */
+    width: 100%;                /* 宽度填满容器 */
+    min-height: 72px;           /* 最小高度 */
+    max-height: 120px;          /* 最大高度限制 */
+    padding: 12px 0 0 0;        /* 上内边距12px，其他为0 */
+    margin: auto 0;             /* 垂直方向自动外边距 */
+    border-radius: 5px;         /* 轻微圆角 */
+    position: relative;         /* 为子元素定位提供基准 */
+    background-size: 100% 100%; /* 背景图完全填充 */
+    background-position: center;/* 背景图居中 */
+    background-repeat: no-repeat; /* 禁止背景图重复 */
+}
+
+/* 奇数行项目组背景 */
+.item-group:nth-child(odd) {
+    background-image: url('/static/images/11.png'); /* 奇数行背景图 */
+}
+
+/* 偶数行项目组背景 */
+.item-group:nth-child(even) {
+    background-image: url('/static/images/22.png'); /* 偶数行背景图 */
+}
+
+/* 特殊选项卡样式（无背景图） */
+.item-group.tab {
+    background-image: none !important; /* 强制移除背景图 */
+}
+
+/* 项目组内奖牌图标样式 */
+.item-group .medal {
+    width: 54px;                /* 固定宽度 */
+    height: 38px;               /* 固定高度 */
+    margin: 0 19px;             /* 上下为0，左右19px */
+    margin-right: 12px;         /* 右侧间距12px（覆盖左边距） */
+}
+
+/* 排名容器样式 */
+.rank-container {
+    position: relative;         /* 为子元素定位提供基准 */
+    width: 54px;                /* 固定宽度 */
+    height: 38px;               /* 固定高度 */
+    margin: 0 19px;             /* 上下为0，左右19px */
+    margin-right: 12px;         /* 右侧间距12px（覆盖左边距） */
+}
+
+/* 排名数字样式 */
+.rank-number {
+    position: absolute;         /* 绝对定位 */
+    top: 50%;                   /* 垂直居中定位 */
+    left: 50%;                  /* 水平居中定位 */
+    transform: translate(-50%, -50%); /* 精确居中 */
+    font-size: 22px;            /* 较大字体 */
+    font-weight: bold;          /* 粗体显示 */
+    color: #ffffff;             /* 白色文字 */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.8); /* 文字阴影增强可读性 */
+    z-index: 2;                 /* 确保显示在背景之上 */
+}
+
+/* 演讲者信息样式 */
+.item-group .speaker {
+    width: 96px;                /* 固定宽度 */
+    margin: 0 0;                /* 清除外边距 */
+    max-height: 65px;           /* 最大高度限制 */
+    overflow: hidden;           /* 内容超出时隐藏 */
+    font-size: 22px;            /* 较大字体 */
+    font-weight: bold;          /* 粗体显示 */
+}
+/* 演讲者信息样式 */
+.item-group .speaker2 {
+    text-align: justify;
+    text-align-last: justify;
+    width: 60px;                /* 固定宽度 */
+    margin: 0 5px;                /* 清除外边距 */
+    max-height: 65px;           /* 最大高度限制 */
+    overflow: hidden;           /* 内容超出时隐藏 */
+    font-size: 20px;            /* 较大字体 */
+    font-weight: bold;          /* 粗体显示 */
+}
+
+/* 项目标题样式 */
+.item-group h3 {
+    flex: 1;                    /* 填充剩余空间 */
+    margin: 10px 10px;          /* 四周10px外边距 */
+    max-height: 65px;           /* 最大高度限制 */
+    overflow: hidden;           /* 内容超出时隐藏 */
+    font-size: 22px;            /* 较大字体 */
+    white-space: normal;        /* 允许文字换行 */
+}
+
+/* 分数显示样式 */
+.item-group .score {
+    margin: 0 19px;             /* 上下为0，左右19px */
+    font-size: 22px;            /* 较大字体 */
+    font-weight: bold;          /* 粗体显示 */
+    color: #FAEBD7;             /* 古董白色文字 */
+    text-decoration: none;      /* 去除下划线 */
+    white-space: nowrap;        /* 禁止文字换行 */
+}

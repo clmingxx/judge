@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打分界面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/judge.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icons/111.png') }}" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.score-form').on('submit', function(event) {
+            event.preventDefault(); // 阻止表单默认提交行为
+
+            var $form = $(this);
+            var item = $form.find('input[name="item"]').val();
+            var score = $form.find('input[name="score"]').val();
+            var username = "{{ session['username'] }}";
+
+            $.ajax({
+                url: "{{ url_for('submit_score') }}",
+                type: 'POST',
+                data: {
+                    item: item,
+                    score: score,
+                    username: username
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // 更新页面内容
+                        $form.replaceWith('<span>已打分：' + score + '</span>'); // 替换表单为分数显示
+                    } else {
+                        alert('打分失败，请重试。');
+                    }
+                },
+                error: function() {
+                    alert('打分失败，请检查网络连接。');
+                }
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('logout') }}" class="btn btn-primary logout-button">退出登录</a>
+        <h2>欢迎，{{ username }}！</h2>
+        <hr> <!-- 添加分割线 -->
+        <h3>打分项目</h3>
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="list-unstyled">
+                    {% for category, message in messages %}
+                        <li class="alert alert-{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div>
+        {% for item in items %}
+            <div class="form-group row">
+                <label for="{{ item }}" class="col-sm-2 col-form-label">{{ item }}:</label>
+                <div class="col-sm-10 d-flex justify-content-end">
+                    {% if user_scores[item] is none %}
+                        <form class="score-form" method="post" action="{{ url_for('submit_score') }}">
+                            <input type="hidden" name="item" value="{{ item }}">
+                            <input type="number" id="{{ item }}" name="score" min="0" max="100" step="0.1" required class="form-control form-control-sm mr-2" style="width: 70px;">
+                            <button type="submit" class="btn btn-sm btn-primary">提交</button>
+                        </form>
+                    {% else %}
+                        <span>已打分：{{ user_scores[item] }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <hr> <!-- 添加分割线 -->
+        {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

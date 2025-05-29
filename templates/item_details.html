@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ item_details.item }} 详情</title>
+</head>
+<body>
+    <div class="item-container">
+        <h1>{{ item_details.item }} 的详细评分</h1>
+        <div class="score-summary">
+
+            {% if item_details.num_unscored > 0 %}
+                <p>未打分评委数：{{ item_details.num_unscored }}</p>
+            {% elif item_details.num_users > 2 %}
+                <p>去除一个最高分：{{ item_details.highest_score }}</p>
+                <p>去除一个最低分：{{ item_details.lowest_score }}</p>
+            {% endif %}
+            {% if item_details.total_score is not none %}
+                <p>总成绩：{{ item_details.total_score }}</p>
+            {% else %}
+                <p>{{ item_details.total_score }}</p>
+            {% endif %}
+            <p>已打分详情</p>
+        </div>
+        <div class="score-container">
+            {% for score in item_details.scores_list %}
+                <div class="score-item {% if loop.index0 == item_details.highest_score_index %}highest{% elif loop.index0 == item_details.lowest_score_index %}lowest{% endif %}">
+                    {{ score }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

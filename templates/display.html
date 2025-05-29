@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比赛结果展示</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/display.css')  }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/item.css')  }}">
+    <link rel="icon" href="{{ url_for('static', filename='icons/111.png')  }}" type="image/x-icon">
+</head>
+<body>
+    <div class="wrapper"> <!-- 外层包裹容器 -->
+        <header>
+            <h1>{{ display_title }}</h1>
+        </header>
+        <div class="container">
+            {% set right_length = results|length // 2 %}
+            {% set left_length = results|length - right_length %}
+            {% set item_height = 100 / (left_length + 1) %}
+            <div class="column left">
+<!--                <div class="rank-number"> {{ results[0].j_all }}</div>-->
+                {% for result in results[:left_length] %}
+                        <div class="item-group">
+                            {% if results[0].j_all %}
+                                <!-- 奖牌图标或占位符 -->
+                                {% if loop.index <= 3 %}
+                                    <img src="{{ url_for('static', filename='icons/medal_' ~ loop.index  ~ '.png') }}" alt="Medal" class="medal">
+                                {% else %}
+                                    <div class="rank-container">
+                                        <img src="{{ url_for('static', filename='icons/tab.png')  }}" alt="Medal" class="tab-image">
+                                        <div class="rank-number">{{ "%02d"|format(loop.index)  }}</div>
+                                    </div>
+                                {% endif %}
+                            {% else %}
+                                <img src="{{ url_for('static', filename='icons/tab.png')  }}" alt="Medal" class="medal">
+                            {% endif %}
+                             <!-- 发言人 -->
+                            <div class="speaker">{{ result.speaker  }}</div>
+                            <div class="speaker2">{{ result.speaker2 }}</div>
+                            <!-- 项目名 -->
+                            <h3>{{ result.item  }}</h3>
+                            <!-- 分数 -->
+                            <a href="javascript:void(0);" onclick="loadItemDetails('{{ result.item  }}')" class="score">
+                                {% if result.total_score  == '评分未完成' %}
+                                    — —
+                                {% else %}
+                                    {{ result.total_score  }}
+                                {% endif %}
+                            </a>
+                        </div>
+                {% endfor %}
+            </div>
+            <div class="column right">
+                {% for result in results[left_length:20] %}
+                        <div class="item-group">
+                            {% if results[0].j_all %}
+                                <!-- 奖牌图标或占位符 -->
+                                <div class="rank-container">
+                                    <img src="{{ url_for('static', filename='icons/tab.png')  }}" alt="Medal" class="tab-image">
+                                    <div class="rank-number">{{ "%02d"|format(loop.index+ left_length)  }}</div>
+<!--                                    <div class="rank-number">{{ loop.index + left_length }}</div>-->
+                                </div>
+                            {% else %}
+                                <img src="{{ url_for('static', filename='icons/tab.png')  }}" alt="Medal" class="medal">
+                            {% endif %}
+                             <!-- 发言人 -->
+                            <div class="speaker">{{ result.speaker  }}</div>
+                            <div class="speaker2">{{ result.speaker2 }}</div>
+                            <!-- 项目名 -->
+                            <h3>{{ result.item  }}</h3>
+                            <!-- 分数 -->
+                            <a href="javascript:void(0);" onclick="loadItemDetails('{{ result.item  }}')" class="score">
+                                {% if result.total_score  == '评分未完成' %}
+                                    — —
+                                {% else %}
+                                    {{ result.total_score  }}
+                                {% endif %}
+                            </a>
+                        </div>
+                {% endfor %}
+                {% if right_length < left_length %}
+                    <div class="item-group tab"></div>
+                {% endif %}
+            </div>
+        </div>
+        <div id="item-details-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div id="modal-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 JavaScript 文件 -->
+    <script src="{{ url_for('static', filename='js/display.js')  }}"></script>
+</body>
+</html>

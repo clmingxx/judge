@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>管理系统｜修改后需重新登录</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin2.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icons/111.png')  }}">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+        <h2>比赛评分系统管理员界面</h2>
+        <p class="warning">注意：用户及项目管理操作后将重置分数！！！</p>
+        <p class="warning">比赛开始后请勿进行用户及项目管理操作！！！</p>
+        <!-- 导航菜单 -->
+        <nav class="section-nav">
+<!--            <button class="tab-btn active" data-target="admins">管理员</button>-->
+            <button class="tab-btn active" data-target="point">打分情况</button>
+            <button class="tab-btn" data-target="users">用户管理</button>
+            <button class="tab-btn" data-target="items">项目管理</button>
+            <button class="tab-btn" data-target="speakers">发言人</button>
+            <button class="tab-btn" data-target="title">显示标题</button>
+
+        </nav>
+
+        <!-- 用户管理模块 -->
+        <section id="users" class="content-section" active>
+            <h3><i class="icon-users"></i> 用户账户</h3>
+            <form method="post" action="/edit" class="add-form">
+                <input type="hidden" name="type" value="users">
+                <input type="text" name="value" placeholder="输入新用户名" required>
+                <button type="submit" name="action" value="add" class="btn-primary">新增用户</button>
+            </form>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>用户名</th>
+                  <th>密码</th>
+                  <th>操作</th> <!-- 原"权限"列已删除 -->
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in users %}
+                <tr>
+                  <td>{{ user }}</td>
+                  <td>••••••</td>
+                  <td class="actions">
+                    <!-- 保留操作列双表单结构 -->
+                    <form method="post" action="/edit" class="inline-form">
+                      <input type="hidden" name="type" value="passwords">
+                      <input type="hidden" name="old_key" value="{{ user }}">
+                      <input type="password" name="value" placeholder="新密码" required>
+                      <button type="submit" name="action" value="update" class="btn-warning">改密</button>
+                    </form>
+                    <form method="post" action="/edit" class="inline-form">
+                      <input type="hidden" name="type" value="users">
+                      <input type="hidden" name="key" value="{{ user }}">
+                      <button type="submit" name="action" value="delete" class="btn-danger">删除</button>
+                    </form>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </section>
+
+        <!-- 项目管理模块 -->
+        <section id="items" class="content-section">
+            <h3><i class="icon-projects"></i> 建设项目</h3>
+            <form method="post" action="/edit" class="add-form">
+                <input type="hidden" name="type" value="items">
+                <input type="text" name="value" placeholder="新项目名称" required>
+                <button type="submit" name="action" value="add" class="btn-primary">新增项目</button>
+            </form>
+            <table class="data-table">
+                <thead>
+                    <tr><th>项目名称</th><th>发言人</th><th>操作</th></tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                    <tr>
+                        <td>{{ item }}</td>
+                        <td>{{ speakers[item]['name'] }}</td>
+                        <td class="actions">
+                            <form method="post" action="/edit">
+                                <input type="hidden" name="type" value="items">
+                                <input type="hidden" name="key" value="{{ item }}">
+                                <button type="submit" name="action" value="delete" class="btn-danger">删除</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 发言人管理模块 -->
+        <section id="speakers" class="content-section">
+            <h3><i class="icon-megaphone"></i> 发言人配置</h3>
+            <form method="post" action="/edit" class="speaker-form">
+                <input type="hidden" name="type" value="speakers">
+                <select name="old_key" required>
+                    <option value="">选择项目...</option>
+                    {% for item in items %}
+                    <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" name="new_key" placeholder="新项目名称（可选）">
+                <input type="text" name="value" placeholder="发言人单位" required>
+                <input type="text" name="value2" placeholder="发言人姓名" value="{{ speakers[item].get('name2', '') if item in speakers else '' }}">
+                <button type="submit" name="action" value="update" class="btn-primary">更新配置</button>
+            </form>
+        </section>
+        <!-- 分数模块 -->
+        <section id="point" class="content-section">
+            <h1>项目分数</h1>
+            <div style="overflow: auto; max-height: 70vh; max-width: 80vw;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>项目</th>
+                            {% for user in users %}
+                                <th>{{ user }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>{{ item }}</td>
+                                {% for user in users %}
+                                    <td>
+                                        {% if scores[user][item] is none %}
+                                            <span class="unscored">未打分</span>
+                                        {% else %}
+                                            {{ scores[user][item] }}
+                                        {% endif %}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="title" class="content-section">
+            <h3><i class="icon-title"></i> 显示标题设置</h3>
+            <form method="post" action="/edit_title" class="add-form">
+                <input type="text" name="title" value="{{ display_title }}" placeholder="输入显示标题" required>
+                <button type="submit" class="btn-primary">更新标题</button>
+            </form>
+        </section>
+    </div>
+    <div class="action-buttons">
+        <a href="{{ url_for('display') }}" class="display-button">
+            <span class="tooltip">实时排名展示</span>
+        </a>
+<!--        <a href="{{ url_for('admin') }}" class="display-button">-->
+<!--            <span class="tooltip">分数查看</span>-->
+<!--        </a>-->
+    </div>
+    <script>
+        // 增强型选项卡切换
+        document.addEventListener('DOMContentLoaded',  function() {
+            // 初始化显示第一个模块
+            const defaultTab = document.querySelector('.tab-btn.active');
+            if (defaultTab) {
+                const target = document.getElementById(defaultTab.dataset.target);
+                target?.classList.add('active');
+            }
+
+            // 选项卡点击事件
+            document.querySelectorAll('.tab-btn').forEach(btn  => {
+                btn.addEventListener('click',  function() {
+                    // 更新按钮状态
+                    document.querySelectorAll('.tab-btn').forEach(b  => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // 切换内容区域
+                    const targetId = this.dataset.target;
+                    document.querySelectorAll('.content-section').forEach(section  => {
+                        section.classList.remove('active');
+                    });
+                    document.getElementById(targetId)?.classList.add('active');
+                });
+            });
+
+            // 表单提交确认
+            document.querySelectorAll('form[action="/edit"]').forEach(form  => {
+                form.addEventListener('submit',  function(e) {
+                    if (this.querySelector('button[type="submit"][value="delete"]'))  {
+                        if (!confirm('确认要删除此项吗？')) {
+                            e.preventDefault();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

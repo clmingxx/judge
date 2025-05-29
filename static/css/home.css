@@ -1,0 +1,68 @@
+/* 基本样式 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #f0faff, #d9eaff); /* 更浅的冷色调 */
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+header h1 {
+    color: #333;
+    font-size: 2em;
+}
+
+header p {
+    color: #666;
+    font-size: 1em;
+}
+
+.qrcode-section {
+    margin-bottom: 20px;
+}
+
+.qrcode {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+}
+
+.qrcode-section p {
+    color: #333;
+    font-size: 0.9em;
+}
+
+.qrcode-section p a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.qrcode-section p a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 20px;
+    color: #666;
+    font-size: 0.8em;
+}
