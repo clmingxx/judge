@@ -165,7 +165,7 @@ scores = {user: {item: round(random.uniform(0, 100), 1) for item in config['item
                   for user in config['users']}
 save_scores(scores)
 # scores = load_scores()
-
+print(f"当前配置: {config}")
 if __name__ == '__main__':
     # 测试代码
     print(f"当前配置: {config}")

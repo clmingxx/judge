@@ -176,6 +176,7 @@ def edit_data():
             elif action == 'remove' and username in config['admins']:
                 config['admins'].remove(username)
 
+
         # 处理项目相关操作
         elif data_type == 'items':
             if action == 'add':
