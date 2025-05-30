@@ -5,14 +5,14 @@ let currentItemName = null;
 
 // 主界面自动刷新控制
 function startAutoRefresh() {
-    // 每10秒刷新一次主界面内容
+    // 每30秒刷新一次主界面内容
     refreshInterval = setInterval(() => {
         if (!currentItemName) {
             window.location.reload();
         } else {
             refreshMainContent();
         }
-    }, 10000);
+    }, 30000);
 }
 
 function stopAutoRefresh() {
