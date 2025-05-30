@@ -55,7 +55,7 @@ Flask 3.1.0
   * 管理员可通过/display页面查看比赛结果的实时排序。
 * 作者：溟同学
 * 邮箱：clmingxx@gmail.com
-* GitHub：[clmingxx/website\_judge: 评分网站](https://github.com/clmingxx/website_judge)
+* GitHub：[clmingxx/website\_judge: 评分网站](https://github.com/clmingxx/judge)
 ### 未完成功能
 * [ ] 能够对并列成绩进行区分
 * [ ] 数据打通数据库
